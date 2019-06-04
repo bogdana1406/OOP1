@@ -26,4 +26,23 @@ public class Truck extends FuelAuto {
     public void unload() {
         System.out.println("Cargo unloaded");
     }
+
+    public void start() {
+        isRunning = true;
+        setCurrentSpeed(10);
+        System.out.println("truck is starting");
+    }
+
+    public void stop() {
+        isRunning = false;
+        setCurrentSpeed(0);
+        System.out.println("truck has stopped");
+    }
+
+
+    @Override
+    public void energize() {
+        fuelUp(getTankVolume() - getAvailablePetrol());
+    }
+
 }

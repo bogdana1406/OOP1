@@ -14,9 +14,10 @@ public class Bus extends FuelAuto {
     @Override
     public void fuelUp(int petrolVolume) {
         int volume = getAvailablePetrol() + petrolVolume;
-        if(volume > getTankVolume()) {
+        if (volume > getTankVolume()) {
             setAvailablePetrol(getTankVolume());
         }
+        System.out.println("Adding DIESEL");
     }
 
     public void fuelUp() {
@@ -43,5 +44,25 @@ public class Bus extends FuelAuto {
         }
         passengerNumber = 0;
         System.out.println("Passengers released");
+    }
+
+    @Override
+    public void start() {
+//        super.start();
+        isRunning = true;
+        setCurrentSpeed(10);
+        System.out.println("Bus is starting");
+    }
+
+    @Override
+    public void stop() {
+        isRunning = false;
+        setCurrentSpeed(0);
+        System.out.println("Bus has stopped");
+    }
+
+    @Override
+    public void energize() {
+        fuelUp(getTankVolume() - getAvailablePetrol());
     }
 }
